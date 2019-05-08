@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { Component } from 'react';
+import Layout from './components/Layout/Layout';
+import Game from './components/Game/Game';
+
 import './App.css';
 
-function App() {
-  return (
-    <div>
-      Memory game 
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <React.Fragment>
+        <Layout>
+          <Game />
+        </Layout>
+      </React.Fragment>
+    )
+  }
 }
 
 export default App;
