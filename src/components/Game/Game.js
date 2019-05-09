@@ -5,14 +5,16 @@ import uniqId from 'uniqid';
 import Card from '../Card/Card';
 import Modal from '../UI/Modal/Modal';
 
+import { shuffleArray } from '../utils';
+
 class Game extends Component {
 
   state = {
     initialCards: ['A', 'B'],
-    duplicatedCards: [],
     finalCards: [],
     selectedCards: [],
-    toWin: null
+    toWin: null,
+    vinto: false
   }
 
   componentDidMount() {
@@ -37,7 +39,19 @@ class Game extends Component {
         setTimeout(() => {
           console.log('oppure qui');
           console.log(prevState.toWin);
-          this.showModal();
+          //this.showModal();
+          this.setState({vinto: true})
+          
+        }, 1000);
+      }
+    }
+
+    if (prevState.vinto !== this.state.vinto) { 
+      console.log(this.state.vinto);
+      if(!this.state.vinto) {
+        setTimeout(() => {
+          console.log('game init');
+          this.initGame();
         }, 1000);
       }
     }
@@ -62,8 +76,7 @@ class Game extends Component {
     }
     //let buildCards = this.state.initialCards.concat(this.state.initialCards).sort()
     this.setState({
-      duplicatedCards: buildCards,
-      finalCards: arr,
+      finalCards: shuffleArray(arr),
       toWin: this.state.initialCards.length
     });
   }
@@ -122,18 +135,11 @@ class Game extends Component {
     this.resetCards();
   }
 
-  showModal = () => {
+  clickModalHandler = () => {
     this.setState({
-      showModal: true
-    })
+      vinto: false
+    });
   }
-  closeModal = () => {
-    this.setState({
-      showModal: false
-    }, () => {
-      this.initGame();
-    })
-  } 
 
   render() {
     let cards = null;
@@ -149,11 +155,9 @@ class Game extends Component {
       });
     }
 
-    console.log(this.state.toWin == false);
-
     return (
       <React.Fragment>
-        <Modal show={!this.state.toWin} clicked={this.closeModal}>
+        <Modal show={this.state.vinto} clicked={this.clickModalHandler}>
           YOU WIN
         </Modal>
         <div>{ this.state.toWin }</div>
