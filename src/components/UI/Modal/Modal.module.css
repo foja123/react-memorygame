@@ -1,0 +1,20 @@
+.modal {
+  width: 70%;
+  left: 15%;
+  margin: auto;
+  position: absolute;
+  background: #fff;
+  top: 9.375rem;
+  padding: 1.2rem;
+  color: #21222c;
+  text-align: center;
+  transform: translateY(-100vh);
+  transition: all .8s ease-in;
+  opacity: 0;
+  z-index: 9;
+}
+
+.modal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
