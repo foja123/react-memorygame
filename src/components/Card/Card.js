@@ -1,7 +1,6 @@
 import React from 'react';
 import classes from './Card.css';
 
-
 const card = props => {
   let classes = ['flip-card'];
 
@@ -18,7 +17,7 @@ const card = props => {
               <div className="flip-card-front">
               </div>
               <div className="flip-card-back">
-                  {props.value}
+                <img src={props.value} alt="Logo" />
               </div>
           </div>
       </div>

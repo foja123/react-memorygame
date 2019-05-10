@@ -7,10 +7,21 @@ import Modal from '../UI/Modal/Modal';
 
 import { shuffleArray } from '../utils';
 
+import angular from '../../assets/images/angular.png';
+import gatsby from '../../assets/images/gatsby.png';
+import graphql from '../../assets/images/graphql.png';
+import ionic from '../../assets/images/ionic.png';
+import js from '../../assets/images/js.png';
+import node from '../../assets/images/node.png';
+import react from '../../assets/images/react.png';
+import reactnative from '../../assets/images/reactnative.png';
+import redux from '../../assets/images/redux.png';
+import vue from '../../assets/images/vue.png';
+
 class Game extends Component {
 
   state = {
-    initialCards: ['A', 'B'],
+    initialCards: [angular, gatsby, graphql, ionic, js, node, react, reactnative, redux, vue],
     finalCards: [],
     selectedCards: [],
     toWin: null,
@@ -18,16 +29,13 @@ class Game extends Component {
   }
 
   componentDidMount() {
-    console.log('componentDidMount GAME');
     this.initGame();
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log('componentDidUpdate GAME');
     if(prevState.selectedCards.length !== this.state.selectedCards.length) {
       if(this.state.selectedCards.length === 2) {
         setTimeout(() => {
-          console.log('qui');
           this.checkCards();
         }, 1000)
       }
@@ -35,22 +43,15 @@ class Game extends Component {
 
     if (prevState.toWin !== this.state.toWin) {
       if(this.state.toWin === 0) {
-        console.log('AAA');
         setTimeout(() => {
-          console.log('oppure qui');
-          console.log(prevState.toWin);
-          //this.showModal();
-          this.setState({vinto: true})
-          
+          this.setState({vinto: true}) 
         }, 1000);
       }
     }
 
     if (prevState.vinto !== this.state.vinto) { 
-      console.log(this.state.vinto);
       if(!this.state.vinto) {
         setTimeout(() => {
-          console.log('game init');
           this.initGame();
         }, 1000);
       }
@@ -82,13 +83,13 @@ class Game extends Component {
 
     setTimeout(() => {
       this.closeCards();
-    }, 2000)
+    }, 2000);
 
   }
 
   clickCardHandler = (index) => {
 
-    if(this.state.selectedCards.length === 2 || this.state.finalCards[index].completed === true || this.state.finalCards[index].open) {
+    if(this.state.selectedCards.length === 2 || this.state.finalCards[index].completed || this.state.finalCards[index].open) {
       return;
     } else {
       this.state.finalCards[index].open = true
@@ -105,10 +106,8 @@ class Game extends Component {
   checkCards = () => {
     if(this.state.selectedCards.length === 2) {
       if(this.state.selectedCards[0].value === this.state.selectedCards[1].value) {
-        //alert('win');
         this.winHandler();
       } else {
-        //alert('loose');
         this.looseHandler();
       }
     }
@@ -150,8 +149,8 @@ class Game extends Component {
     let finalCardsCopy = this.state.finalCards.slice();
     const finalCardsClosed = [];
     for (let k in finalCardsCopy) {
-      finalCardsClosed.push({...finalCardsCopy[k]});
-      finalCardsClosed[k].open = false;
+      finalCardsClosed.push({...finalCardsCopy[k], open: false});
+      //finalCardsClosed[k].open = false;
     }
     this.setState({
       finalCards: finalCardsClosed
@@ -175,11 +174,11 @@ class Game extends Component {
     return (
       <React.Fragment>
         <Modal show={this.state.vinto} clicked={this.clickModalHandler}>
-          YOU WIN
+          COMPLETED!
         </Modal>
         <div>{ this.state.toWin }</div>
         <div className={classes.gameContainer}>
-        { cards }
+          { cards }
         </div>
       </React.Fragment>
     );

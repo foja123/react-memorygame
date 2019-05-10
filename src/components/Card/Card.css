@@ -24,11 +24,9 @@
 
 .flip-card.complete .flip-card-inner {
   opacity: .5;
-  background-color: red;
 }
 
 .flip-card.complete {
-  background-color: red;
   opacity: .5;
   cursor: default;
 }
@@ -41,14 +39,25 @@
 }
 
 .flip-card-front {
-  background-color: #bbb;
+  background-color: #fafafa;
   color: black;
   z-index: 2;
+  border-radius: 8px;
 }
 
 .flip-card-back {
-  background-color: #2980b9;
+  background-color: #fafafa;
   color: white;
   transform: rotateY(180deg);
   z-index: 1;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
 } 
+
+.flip-card-back img {
+  display: block;
+  width: 60%;
+  height: auto;
+  margin: auto;
+}
