@@ -1,0 +1,9 @@
+.authContainer {
+  background: #fafafa;
+  border-radius: 5px;
+  padding: 1.5rem;
+  color: #21222c;
+  width: 90%;
+  max-width: 37.5rem;
+  margin: 1.5625rem auto;
+}

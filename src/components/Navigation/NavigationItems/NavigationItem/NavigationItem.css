@@ -1,0 +1,12 @@
+.link {
+  color: #fff;
+  text-decoration: none;
+  padding: 1rem;
+  border-bottom: 4px solid transparent;
+  transition: all .3s ease-in;
+}
+
+.link.active {
+  color: #ff79c6;
+  border-bottom: 4px solid #ff79c6;
+}

@@ -5,4 +5,9 @@
   text-transform: uppercase;
   cursor: pointer; 
   background: #ff79c6;
+  transition: all .3s ease-in;
+}
+
+.btn:hover {
+  background: #c43b89;
 }
