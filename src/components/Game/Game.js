@@ -70,7 +70,7 @@ class Game extends Component {
       arr.push({
         value: buildCards[k],
         id: uniqId(),
-        open: false,
+        open: true,
         completed: false
       });
     }
@@ -79,11 +79,16 @@ class Game extends Component {
       finalCards: shuffleArray(arr),
       toWin: this.state.initialCards.length
     });
+
+    setTimeout(() => {
+      this.closeCards();
+    }, 2000)
+
   }
 
   clickCardHandler = (index) => {
 
-    if(this.state.selectedCards.length === 2 || this.state.finalCards[index].completed === true) {
+    if(this.state.selectedCards.length === 2 || this.state.finalCards[index].completed === true || this.state.finalCards[index].open) {
       return;
     } else {
       this.state.finalCards[index].open = true
@@ -138,6 +143,18 @@ class Game extends Component {
   clickModalHandler = () => {
     this.setState({
       vinto: false
+    });
+  }
+
+  closeCards = () => {
+    let finalCardsCopy = this.state.finalCards.slice();
+    const finalCardsClosed = [];
+    for (let k in finalCardsCopy) {
+      finalCardsClosed.push({...finalCardsCopy[k]});
+      finalCardsClosed[k].open = false;
+    }
+    this.setState({
+      finalCards: finalCardsClosed
     });
   }
 

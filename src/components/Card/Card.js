@@ -1,20 +1,28 @@
 import React from 'react';
-import classes from './Card.module.css';
+import classes from './Card.css';
 
 
 const card = props => {
-  let cls = [classes.card];
+  let classes = ['flip-card'];
+
   if(props.isOpen) {
-    cls.push(classes.isOpen);
+      classes.push('open');
   }
   if(props.isCompleted) {
-    cls.push(classes.isCompleted);
+      classes.push('complete');
   }
-  return(
-    <div className={cls.join(' ')} onClick={props.clicked}> 
-      { props.value }
-    </div>
-  )
+
+  return (
+      <div className={classes.join(' ')} onClick={props.clicked}>
+          <div className="flip-card-inner">
+              <div className="flip-card-front">
+              </div>
+              <div className="flip-card-back">
+                  {props.value}
+              </div>
+          </div>
+      </div>
+  );
 }
 
 export default card;
