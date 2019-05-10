@@ -29,8 +29,10 @@ class Game extends Component {
     vinto: false
   }
 
+ 
+
   componentDidMount() {
-    this.initGame();
+    //this.initGame();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -59,7 +61,6 @@ class Game extends Component {
     // }
 
   }
-
 
   initGame = () => {
     let buildCards = this.state.initialCards.map(item => {
@@ -178,7 +179,7 @@ class Game extends Component {
         </Modal>
         <div style={{textAlign: 'center', margin: '25px'}}>
           <h3 style={{marginBottom: '25px'}}>{ this.state.toWin }</h3>
-          <Button clicked={this.initGame}>Restart Game</Button>
+          <Button clicked={this.initGame}>start Game</Button>
         </div>
         <div className={classes.gameContainer}>
           { cards }

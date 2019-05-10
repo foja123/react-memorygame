@@ -1,0 +1,13 @@
+.inputContainer {
+  width: 100%;
+  margin-bottom: .8rem;
+}
+
+input {
+  width: 100%;
+  padding: .5rem;
+}
+
+input:focus {
+  outline: transparent;
+}
