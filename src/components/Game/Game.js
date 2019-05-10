@@ -4,6 +4,7 @@ import uniqId from 'uniqid';
 
 import Card from '../Card/Card';
 import Modal from '../UI/Modal/Modal';
+import Button from '../UI/Button/Button';
 
 import { shuffleArray } from '../utils';
 
@@ -49,13 +50,13 @@ class Game extends Component {
       }
     }
 
-    if (prevState.vinto !== this.state.vinto) { 
-      if(!this.state.vinto) {
-        setTimeout(() => {
-          this.initGame();
-        }, 1000);
-      }
-    }
+    // if (prevState.vinto !== this.state.vinto) { 
+    //   if(!this.state.vinto) {
+    //     setTimeout(() => {
+    //       this.initGame();
+    //     }, 1000);
+    //   }
+    // }
 
   }
 
@@ -176,7 +177,10 @@ class Game extends Component {
         <Modal show={this.state.vinto} clicked={this.clickModalHandler}>
           COMPLETED!
         </Modal>
-        <div>{ this.state.toWin }</div>
+        <div style={{textAlign: 'center', margin: '25px'}}>
+          <h3 style={{marginBottom: '25px'}}>{ this.state.toWin }</h3>
+          <Button clicked={this.initGame}>Restart Game</Button>
+        </div>
         <div className={classes.gameContainer}>
           { cards }
         </div>

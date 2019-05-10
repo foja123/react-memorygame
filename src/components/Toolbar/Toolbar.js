@@ -7,7 +7,6 @@ const toolbar = () => {
   return (
     <header className={classes.header}>
       <Logo />
-      navigation
     </header>
   )
 }
