@@ -40,8 +40,6 @@ class Game extends Component {
 
   componentDidUpdate(prevProps, prevState) {
 
-    console.log('Game: ComponentDidUpdate' )
-
     if(prevState.selectedCards.length !== this.state.selectedCards.length) {
       if(this.state.selectedCards.length === 2) {
         setTimeout(() => {
