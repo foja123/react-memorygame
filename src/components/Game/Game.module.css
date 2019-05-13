@@ -5,5 +5,7 @@
   flex-wrap: wrap;
   justify-content: center;
   max-width: 50rem;
+  min-height: 30rem;
+  align-items: center;
 }
 

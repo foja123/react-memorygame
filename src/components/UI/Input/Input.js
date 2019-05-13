@@ -13,7 +13,7 @@ const input = props => {
   }
 
   return (
-    <div className="inputContainer">
+    <div className="inputContainer"> 
       { inputEl }
     </div>
   )

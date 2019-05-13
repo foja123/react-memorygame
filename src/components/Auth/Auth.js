@@ -12,14 +12,28 @@ class Auth extends Component {
         elementConfig: {
           type: 'text',
           placeholder: 'Your name'
-        }
+        },
+        value: '',
+        validation: {
+          required: true, 
+          touched: false
+        },
+        valid: false
+
       },
       password: {
         elementType: 'input',
         elementConfig: {
           type: 'password',
           placeholder: 'Your password'
-        }
+        },
+        value: '',
+        validation: {
+          required: true, 
+          minLength: 5,
+          touched: false
+        },
+        valid: false
       }
     }
   }

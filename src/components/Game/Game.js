@@ -5,6 +5,8 @@ import uniqId from 'uniqid';
 import Card from '../Card/Card';
 import Modal from '../UI/Modal/Modal';
 import Button from '../UI/Button/Button';
+import Loader from '../UI/Loader/Loader';
+import Timer from '../Timer/Timer';
 
 import { shuffleArray } from '../utils';
 
@@ -26,13 +28,18 @@ class Game extends Component {
     finalCards: [],
     selectedCards: [],
     toWin: null,
-    vinto: false
+    vinto: false,
+    stop: false,
+    isPlaying: false
   }
 
- 
+
 
   componentDidMount() {
-    //this.initGame();
+    this.int = setTimeout(() => {
+      this.initGame();
+      this.setState({isPlaying: true})
+    }, 2000); 
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -40,27 +47,30 @@ class Game extends Component {
       if(this.state.selectedCards.length === 2) {
         setTimeout(() => {
           this.checkCards();
-        }, 1000)
+        }, 1000);
       }
     }
 
     if (prevState.toWin !== this.state.toWin) {
       if(this.state.toWin === 0) {
         setTimeout(() => {
-          this.setState({vinto: true}) 
+          this.setState({vinto: true, stop: true}) 
         }, 1000);
       }
     }
 
-    // if (prevState.vinto !== this.state.vinto) { 
-    //   if(!this.state.vinto) {
-    //     setTimeout(() => {
-    //       this.initGame();
-    //     }, 1000);
-    //   }
-    // }
+    if (prevState.vinto !== this.state.vinto) { 
+      if(!this.state.vinto) {
+        //this.initHandler();
+      }
+    }
 
   }
+
+  componentWillUnmount() {
+    clearTimeout(this.int);
+  }
+
 
   initGame = () => {
     let buildCards = this.state.initialCards.map(item => {
@@ -159,8 +169,9 @@ class Game extends Component {
   }
 
   render() {
-    let cards = null;
-    if(this.state.finalCards) {
+
+    let cards = <Loader />;
+    if(this.state.finalCards.length !== 0) {
       cards = this.state.finalCards.map((card, index) => {
         return <Card 
           isOpen={card.open}
@@ -178,7 +189,6 @@ class Game extends Component {
           COMPLETED!
         </Modal>
         <div style={{textAlign: 'center', margin: '25px'}}>
-          <h3 style={{marginBottom: '25px'}}>{ this.state.toWin }</h3>
           <Button clicked={this.initGame}>start Game</Button>
         </div>
         <div className={classes.gameContainer}>
