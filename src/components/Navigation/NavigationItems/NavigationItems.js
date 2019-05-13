@@ -9,7 +9,6 @@ const navigationItems = props => {
     <nav className="navigation">
       <ul>
         <NavigationItem link="/game">Game</NavigationItem>
-        <NavigationItem link="/auth">Auth</NavigationItem>
       </ul>
     </nav>
   )

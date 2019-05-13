@@ -6,7 +6,6 @@ import Card from '../Card/Card';
 import Modal from '../UI/Modal/Modal';
 import Button from '../UI/Button/Button';
 import Loader from '../UI/Loader/Loader';
-import Timer from '../Timer/Timer';
 
 import { shuffleArray } from '../utils';
 
@@ -28,9 +27,7 @@ class Game extends Component {
     finalCards: [],
     selectedCards: [],
     toWin: null,
-    vinto: false,
-    stop: false,
-    isPlaying: false
+    vinto: false
   }
 
 
@@ -38,11 +35,13 @@ class Game extends Component {
   componentDidMount() {
     this.int = setTimeout(() => {
       this.initGame();
-      this.setState({isPlaying: true})
     }, 2000); 
   }
 
   componentDidUpdate(prevProps, prevState) {
+
+    console.log('Game: ComponentDidUpdate' )
+
     if(prevState.selectedCards.length !== this.state.selectedCards.length) {
       if(this.state.selectedCards.length === 2) {
         setTimeout(() => {
@@ -59,18 +58,19 @@ class Game extends Component {
       }
     }
 
-    if (prevState.vinto !== this.state.vinto) { 
-      if(!this.state.vinto) {
-        //this.initHandler();
-      }
-    }
-
   }
 
   componentWillUnmount() {
     clearTimeout(this.int);
   }
 
+  initCountDown = () => {
+    clearInterval(this.setState(prevState => {
+      return {
+        countDown: prevState.countDown -1
+      }
+    }), 1000)
+  }
 
   initGame = () => {
     let buildCards = this.state.initialCards.map(item => {
@@ -164,7 +164,8 @@ class Game extends Component {
       //finalCardsClosed[k].open = false;
     }
     this.setState({
-      finalCards: finalCardsClosed
+      finalCards: finalCardsClosed,
+      start: true
     });
   }
 
